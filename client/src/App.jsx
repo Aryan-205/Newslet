@@ -1,11 +1,13 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 function App() {
 
+  const [data,setData] = useState(null)
+
   useEffect(()=>{
     const apiCall = async () => {
-      const response = await fetch(`https://api.nytimes.com/svc/archive/v1/2024/1.json?api-key=${import.meta.env.VITE_KEY}`)
-      console.log(response)
+      const response = await fetch(`http://localhost:3000/`)
+      setData(response.json().copyright)
     }
     apiCall()
   },[])
@@ -13,7 +15,7 @@ function App() {
   return (
     <>
       <div className="bg-black h-screen">
-        <p className="text-white">hello</p>
+        <pre className="text-white">{data}</pre>
       </div>
     </>
   )
