@@ -6,13 +6,12 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const app = express()
-
 app.use(cors())
 
 app.get('/', async (req, res) => {
   try {
-    const response = await axios.get(`https://api.nytimes.com/svc/archive/v1/2024/1.json?api-key=${process.env.API_KEY}`)
-    res.status(200).json(response.data).send("fetching")
+    const response = await axios.get(`https://api.nytimes.com/svc/archive/v1/2025/5.json?api-key=${process.env.API_KEY}`)
+    res.status(200).json(response.data.response.docs)
 
   } catch (error) {
     console.error(error)
