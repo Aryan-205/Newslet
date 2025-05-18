@@ -2,14 +2,15 @@ import { useEffect, useState } from "react"
 
 function App() {
 
-  const [data, setData] = useState(null)
+  const [data, setData] = useState([])
 
   useEffect(()=>{
     const apiCall = async () => {
       const response = await fetch(`http://localhost:3000/`)
-      const resData = response.json() 
-      console.log(resData)
-      resData?.then(()=>setData(resData))
+      const resData = await response.json() 
+      resData
+        .then(()=>setData(resData))
+      console.log(data)
     }
     apiCall()
   },[])
@@ -17,7 +18,7 @@ function App() {
   return (
     <>
       <div className="bg-black h-screen">
-        <p className="text-white">{data}</p>
+        {/* <p className="text-white">{data[0].headline.main}</p> */}
       </div>
     </>
   )
