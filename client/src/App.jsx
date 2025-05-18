@@ -60,6 +60,7 @@ function App() {
     const response = await fetch(`http://localhost:3000/?page=${page}&limit=50`);
     const newData = await response.json();
     const items = newData.data || [];
+    console.log(items)
 
     // If no more data to load
     if (newData.length === 0) {
@@ -86,12 +87,14 @@ function App() {
       >
         {data.map((item) => (
           <div
-            className="border border-white rounded-xl p-4 m-2"
+            className="border border-white rounded-xl p-4 m-2 space-y-4"
             key={item._id}
           >
             <p className="text-white text-xl">{item.headline?.main}</p>
             <p className="text-white">{item.abstract}</p>
+            <p className="text-white">{item.lead_paragraph}</p>
             <p className="text-gray-500">{item.byline?.original}</p>
+            {/* <img src={`${item.multimedia[0].url}`} alt="" /> */}
           </div>
         ))}
       </InfiniteScroll>
